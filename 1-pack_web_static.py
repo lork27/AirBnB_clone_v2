@@ -6,8 +6,7 @@ import os.path
 
 
 def do_pack():
-    """function that creates targz file out of web_static directory
-    tar -czvf versions/web_static_<year><month><day><hour><minute><second>.tgz webstatic"""
+    """function that creates targz file out of web_static directory"""
     time = datetime.now().strftime("%Y%m%d%H%M%S")
     tgzname = "versions/web_static_{}.tgz".format(time)
     if os.path.isdir("versions") is False:
