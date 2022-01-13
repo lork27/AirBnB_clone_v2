@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #Script that installs and setup nginx web server and its structure
-apt-get update
+apt-get -y update
 apt-get -y install nginx
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
