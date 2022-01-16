@@ -12,4 +12,5 @@ def do_clean(number=0):
         run("cd /data/web_static/releases; ls -t | tail -n +2 | xargs rm -rf")
     else:
         local("cd versions; ls -t | tail -n +{} | xargs rm -rf".format(delnum))
-        run("cd /data/web_static/releases; ls -t | tail +{} | xargs rm -rf".format(delnum))
+        run("cd /data/web_static/releases; ls -t | tail +{} | xargs rm -rf"
+            .format(delnum))
