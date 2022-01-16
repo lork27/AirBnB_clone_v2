@@ -7,7 +7,8 @@ os.environ.hosts = ["35.196.44.201", "18.208.171.12"]
 
 
 def do_clean(number=0):
-    if number >= 1:
+    """cleans up local machine and server from old files"""
+    if number <= 1:
         local("ls -1tr | head -n -1 | xargs rm -f versions")
         run("ls -1tr | head -n -1 | xargs rm -f /data/web_static/releases")
     else:
