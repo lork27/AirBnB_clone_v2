@@ -18,7 +18,7 @@ def do_deploy(archive_path):
             run("tar -xzf /tmp/" + filename + " -C " + name)
             run("rm /tmp/" + filename)
             run("mv " + name + "web_static/* " + name)
-            run("rm -rf" + name + "web_static")
+            run("rm -rf " + name + "web_static")
             run("rm -rf /data/web_static/current")
             run("ln -s " + name + " /data/web_static/current")
             print("New version deployed!")
