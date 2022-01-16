@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# fabric file to create tgz file
+"""fabric file that deploys web static content to my servers"""
 from fabric.api import run, put
 import os
 
