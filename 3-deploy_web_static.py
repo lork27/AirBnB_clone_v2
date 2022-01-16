@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """fabric file that deploys web static content to my servers"""
+from asyncore import file_dispatcher
 from fabric.api import run, put, local
 import os
 from datetime import datetime
@@ -41,3 +42,11 @@ def do_deploy(archive_path):
             return False
     else:
         return False
+
+
+def deploy():
+    """function that uses do_pack and do_deploy to deploy web static content"""
+    file_path = do_pack()
+    if file_path is None:
+        return False
+    return do_deploy(file_path)
