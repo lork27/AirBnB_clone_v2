@@ -11,16 +11,16 @@ def do_deploy(archive_path):
     if os.path.exists(archive_path):
         try:
             put(archive_path, "/tmp/")
-            filename = archive_path.split("/")[1]
-            filename2 = filename.split(".")[0]
-            name = "/data/web_static/releases/" + filename2 + "/"
-            run("mkdir -p" + name)
-            run("tar -xzf /tmp/" + filename + " -C " + name)
-            run("rm /tmp/" + filename)
-            run("mv " + name + "web_static/* " + name)
-            run("rm -rf " + name + "web_static")
+            file_name = archive_path.split("/")[1]
+            file_name2 = file_name.split(".")[0]
+            final_name = "/data/web_static/releases/" + file_name2 + "/"
+            run("mkdir -p " + final_name)
+            run("tar -xzf /tmp/" + file_name + " -C " + final_name)
+            run("rm /tmp/" + file_name)
+            run("mv " + final_name + "web_static/* " + final_name)
+            run("rm -rf " + final_name + "web_static")
             run("rm -rf /data/web_static/current")
-            run("ln -s " + name + " /data/web_static/current")
+            run("ln -s " + final_name + " /data/web_static/current")
             print("New version deployed!")
             return True
         except:
