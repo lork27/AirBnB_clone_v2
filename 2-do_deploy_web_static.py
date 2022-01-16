@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # fabric file to create tgz file
 from fabric.api import run, put
-import os.path
+import os
 
 env.hosts = ["35.196.44.201", "18.208.171.12"]
 
