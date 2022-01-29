@@ -22,7 +22,6 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
-            print("inside cities method of states")
             cities_in_state = []
             print(models.storage.all(City))
             for city in models.storage.all(City).values():
