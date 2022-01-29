@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This module defines a base class for all models in our hbnb clone"""
 
+from itsdangerous import exc
 import models
 import uuid
 from datetime import datetime
@@ -20,15 +21,19 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
-        if len(kwargs) == 0:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-        else:
-            dt = "%Y-%m-%dT%H:%M:%S.%f"
-            del kwargs['__class__']
-            kwargs['created_at'] = datetime.strptime(kwargs["created_at"], dt)
-            kwargs['updated_at'] = datetime.strptime(kwargs["updated_at"], dt)
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        if (len(kwargs) > 0):
+            try:
+                dt = "%Y-%m-%dT%H:%M:%S.%f"
+                del kwargs['__class__']
+                kwargs['created_at'] = datetime.strptime(
+                    kwargs["created_at"], dt)
+                kwargs['updated_at'] = datetime.strptime(
+                    kwargs["updated_at"], dt)
+            except:
+                pass
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
