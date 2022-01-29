@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 
+from jinja2 import ModuleLoader
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
@@ -17,15 +18,14 @@ class State(BaseModel, Base):
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         cities = relationship("City", backref="state", cascade='delete')
     else:
+        print("FILE STORAGE MODE ENGAGED")
+
         @property
         def cities(self):
-            '''
-        Getter attribute cities that returns the list of City
-        instances with state_id equals to the current State.id
-        '''
-
+            print("inside cities method of states")
             cities_in_state = []
+            print(models.storage.all(City))
             for city in models.storage.all(City).values():
-                if self.id == city:
+                if self.id == city.state_id:
                     cities_in_state.append(city)
             return cities_in_state
