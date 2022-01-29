@@ -23,7 +23,6 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             cities_in_state = []
-            print(models.storage.all(City))
             for city in models.storage.all(City).values():
                 if self.id == city.state_id:
                     cities_in_state.append(city)
