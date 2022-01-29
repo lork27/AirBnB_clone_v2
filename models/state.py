@@ -18,8 +18,6 @@ class State(BaseModel, Base):
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         cities = relationship("City", backref="state", cascade='delete')
     else:
-        print("FILE STORAGE MODE ENGAGED")
-
         @property
         def cities(self):
             cities_in_state = []
