@@ -46,7 +46,7 @@ class DBStorage:
         if cls:
             query = self.__session.query(cls).all()
             for obj in query:
-                newdict[cls + "." + obj.id] = obj
+                newdict[str(cls) + "." + obj.id] = obj
         else:
             for key, value in self.hbnb_classes.items():
                 try:
@@ -83,4 +83,4 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        self.__session.remove()
+        self.__session.close()
